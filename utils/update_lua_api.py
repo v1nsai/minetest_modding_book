@@ -1,4 +1,4 @@
-import markdown, urllib2, datetime, re, string
+import markdown, urllib2, datetime, re, string, argparse
 from bs4 import BeautifulSoup
 
 def get_key(index, li, title):
@@ -91,22 +91,62 @@ for li in lis:
 			new_tag.string = "#"
 			li.insert(0, new_tag)
 
+# Prepare for writing
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--darkmode", help="use a dark theme", action="store_true")
+args = parser.parse_args()
 
 html = str(soup)
+
+frames = """
+<frameset cols="25%,*">
+    <frame src="toc.html" name="toc">
+    <frame src="lua_api.html" name="content">
+</frameset>
+"""
+
+toc = md.toc
+toc = re.sub('<a href="(.+?)"', '<a href="lua_api.html\\1" target="content"', toc)
+
+if args.darkmode:
+	darkmode = """
+	<style>
+	body {
+	background-color: black;
+	color: white;
+	}
+	a:link {
+	color: #0066ff
+	}
+	a:visited {
+	color: #cc33ff
+	}
+    </style>\n
+	"""
+	html = darkmode + html
+	toc = darkmode + toc
+	frames = darkmode + frames
 
 #
 # Writing to file
 #
-print("Writing to file...")
-file = open("lua_api.html", "w")
+print("Writing content.html...")
+file = open("out/lua_api.html", "w")
 file.write("---\ntitle: Lua Modding API Reference\nlayout: default\n---\n")
 file.write("<div class='notice notice-info'>\n")
 file.write("<h2>This is lua_api.txt nicely formated: I did not write this</h2>\n")
 file.write(credit)
-file.write("</div>\n")
-file.write("<h2 id=\"table-of-contents\">Table of Contents</h2>\n")
-file.write(md.toc)
 file.write(html)
 file.close()
+
+print("Writing toc.html.....")
+file = open("out/toc.html", "w")
+file.write("</div>\n")
+file.write("<h2 id=\"table-of-contents\">Table of Contents</h2>\n")
+file.write(toc)
+
+print("Writing frames.html......")
+file = open("out/index.html", "w")
+file.write(frames)
 
 print("Done")
