@@ -110,18 +110,18 @@ toc = re.sub('<a href="(.+?)"', '<a href="lua_api.html\\1" target="content"', to
 
 if args.darkmode:
 	darkmode = """
-	<style>
-	body {
-	background-color: black;
-	color: white;
-	}
-	a:link {
-	color: #338AFF
-	}
-	a:visited {
-	color: #338AFF
-	}
-    </style>\n
+		<style>
+			body {
+				background-color: black;
+				color: white;
+			}
+			a:link {
+				color: #338AFF
+			}
+			a:visited {
+				color: #338AFF
+			}
+		</style>\n
 	"""
 	html = darkmode + html
 	toc = darkmode + toc
@@ -130,8 +130,10 @@ if args.darkmode:
 #
 # Writing to file
 #
+
 if not os.path.isdir("out/"):
 	os.mkdir("out/")
+
 print("Writing content.html...")
 file = open("out/lua_api.html", "w")
 file.write("---\ntitle: Lua Modding API Reference\nlayout: default\n---\n")
