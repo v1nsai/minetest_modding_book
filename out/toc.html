@@ -1,0 +1,524 @@
+</div>
+<h2 id="table-of-contents">Table of Contents</h2>
+
+		<style>
+			body {
+				background-color: black;
+				color: white;
+			}
+			a:link {
+				color: #338AFF
+			}
+			a:visited {
+				color: #338AFF
+			}
+		</style>
+
+	<div class="toc">
+<ul>
+<li><a href="lua_api.html#introduction" target="content">Introduction</a></li>
+<li><a href="lua_api.html#programming-in-lua" target="content">Programming in Lua</a></li>
+<li><a href="lua_api.html#startup" target="content">Startup</a></li>
+<li><a href="lua_api.html#paths" target="content">Paths</a></li>
+<li><a href="lua_api.html#games" target="content">Games</a><ul>
+<li><a href="lua_api.html#menu-images" target="content">Menu images</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#mods" target="content">Mods</a><ul>
+<li><a href="lua_api.html#mod-load-path" target="content">Mod load path</a></li>
+<li><a href="lua_api.html#world-specific-games" target="content">World-specific games</a></li>
+<li><a href="lua_api.html#modpacks" target="content">Modpacks</a></li>
+<li><a href="lua_api.html#mod-directory-structure" target="content">Mod directory structure</a><ul>
+<li><a href="lua_api.html#modname" target="content">modname</a></li>
+<li><a href="lua_api.html#modconf" target="content">mod.conf</a></li>
+<li><a href="lua_api.html#screenshotpng" target="content">screenshot.png</a></li>
+<li><a href="lua_api.html#dependstxt" target="content">depends.txt</a></li>
+<li><a href="lua_api.html#descriptiontxt" target="content">description.txt</a></li>
+<li><a href="lua_api.html#settingtypestxt" target="content">settingtypes.txt</a></li>
+<li><a href="lua_api.html#initlua" target="content">init.lua</a></li>
+<li><a href="lua_api.html#models" target="content">models</a></li>
+<li><a href="lua_api.html#textures-sounds-media" target="content">textures, sounds, media</a></li>
+<li><a href="lua_api.html#locale" target="content">locale</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#naming-conventions" target="content">Naming conventions</a><ul>
+<li><a href="lua_api.html#example" target="content">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#aliases" target="content">Aliases</a><ul>
+<li><a href="lua_api.html#mapgen-aliases" target="content">Mapgen aliases</a><ul>
+<li><a href="lua_api.html#aliases-for-non-v6-mapgens" target="content">Aliases for non-V6 mapgens</a><ul>
+<li><a href="lua_api.html#essential-aliases" target="content">Essential aliases</a></li>
+<li><a href="lua_api.html#optional-aliases" target="content">Optional aliases</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#aliases-needed-for-mapgen-v6" target="content">Aliases needed for Mapgen V6</a></li>
+<li><a href="lua_api.html#setting-the-node-used-in-mapgen-singlenode" target="content">Setting the node used in Mapgen Singlenode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#textures" target="content">Textures</a><ul>
+<li><a href="lua_api.html#texture-modifiers" target="content">Texture modifiers</a><ul>
+<li><a href="lua_api.html#texture-overlaying" target="content">Texture overlaying</a></li>
+<li><a href="lua_api.html#texture-grouping" target="content">Texture grouping</a></li>
+<li><a href="lua_api.html#escaping" target="content">Escaping</a></li>
+<li><a href="lua_api.html#advanced-texture-modifiers" target="content">Advanced texture modifiers</a><ul>
+<li><a href="lua_api.html#crack" target="content">Crack</a></li>
+<li><a href="lua_api.html#combineltwgtxlthgtltx1gtlty1gtltfile1gtltx2gtlty2gtltfile2gt" target="content">[combine:&lt;w&gt;x&lt;h&gt;:&lt;x1&gt;,&lt;y1&gt;=&lt;file1&gt;:&lt;x2&gt;,&lt;y2&gt;=&lt;file2&gt;:...</a></li>
+<li><a href="lua_api.html#resizeltwgtxlthgt" target="content">[resize:&lt;w&gt;x&lt;h&gt;</a></li>
+<li><a href="lua_api.html#opacityltrgt" target="content">[opacity:&lt;r&gt;</a></li>
+<li><a href="lua_api.html#invertltmodegt" target="content">[invert:&lt;mode&gt;</a></li>
+<li><a href="lua_api.html#brighten" target="content">[brighten</a></li>
+<li><a href="lua_api.html#noalpha" target="content">[noalpha</a></li>
+<li><a href="lua_api.html#makealphaltrgtltggtltbgt" target="content">[makealpha:&lt;r&gt;,&lt;g&gt;,&lt;b&gt;</a></li>
+<li><a href="lua_api.html#transformlttgt" target="content">[transform&lt;t&gt;</a></li>
+<li><a href="lua_api.html#inventorycubelttopgtltleftgtltrightgt" target="content">[inventorycube{&lt;top&gt;{&lt;left&gt;{&lt;right&gt;</a></li>
+<li><a href="lua_api.html#lowpartltpercentgtltfilegt" target="content">[lowpart:&lt;percent&gt;:&lt;file&gt;</a></li>
+<li><a href="lua_api.html#verticalframelttgtltngt" target="content">[verticalframe:&lt;t&gt;:&lt;n&gt;</a></li>
+<li><a href="lua_api.html#maskltfilegt" target="content">[mask:&lt;file&gt;</a></li>
+<li><a href="lua_api.html#sheetltwgtxlthgtltxgtltygt" target="content">[sheet:&lt;w&gt;x&lt;h&gt;:&lt;x&gt;,&lt;y&gt;</a></li>
+<li><a href="lua_api.html#colorizeltcolorgtltratiogt" target="content">[colorize:&lt;color&gt;:&lt;ratio&gt;</a></li>
+<li><a href="lua_api.html#multiplyltcolorgt" target="content">[multiply:&lt;color&gt;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#hardware-coloring" target="content">Hardware coloring</a><ul>
+<li><a href="lua_api.html#static-coloring" target="content">Static coloring</a><ul>
+<li><a href="lua_api.html#global-color" target="content">Global color</a></li>
+<li><a href="lua_api.html#tile-color" target="content">Tile color</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#palettes" target="content">Palettes</a><ul>
+<li><a href="lua_api.html#palette-indexing" target="content">Palette indexing</a></li>
+<li><a href="lua_api.html#using-palettes-with-items" target="content">Using palettes with items</a></li>
+<li><a href="lua_api.html#linking-palettes-with-nodes" target="content">Linking palettes with nodes</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#conversion-between-nodes-in-the-inventory-and-on-the-map" target="content">Conversion between nodes in the inventory and on the map</a></li>
+<li><a href="lua_api.html#colored-items-in-craft-recipes" target="content">Colored items in craft recipes</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#soft-texture-overlay" target="content">Soft texture overlay</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#sounds" target="content">Sounds</a><ul>
+<li><a href="lua_api.html#simplesoundspec" target="content">SimpleSoundSpec</a></li>
+<li><a href="lua_api.html#special-sound-files" target="content">Special sound files</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#registered-definitions" target="content">Registered definitions</a></li>
+<li><a href="lua_api.html#nodes" target="content">Nodes</a><ul>
+<li><a href="lua_api.html#node-paramtypes" target="content">Node paramtypes</a></li>
+<li><a href="lua_api.html#node-drawtypes" target="content">Node drawtypes</a></li>
+<li><a href="lua_api.html#node-boxes" target="content">Node boxes</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#map-terminology-and-coordinates" target="content">Map terminology and coordinates</a><ul>
+<li><a href="lua_api.html#nodes-mapblocks-mapchunks" target="content">Nodes, mapblocks, mapchunks</a></li>
+<li><a href="lua_api.html#coordinates" target="content">Coordinates</a><ul>
+<li><a href="lua_api.html#orientation-of-axes" target="content">Orientation of axes</a></li>
+<li><a href="lua_api.html#node-coordinates" target="content">Node coordinates</a></li>
+<li><a href="lua_api.html#mapblock-coordinates" target="content">Mapblock coordinates</a><ul>
+<li><a href="lua_api.html#converting-node-position-to-the-containing-blockpos" target="content">Converting node position to the containing blockpos</a></li>
+<li><a href="lua_api.html#converting-blockpos-to-minmax-node-positions" target="content">Converting blockpos to min/max node positions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#hud" target="content">HUD</a><ul>
+<li><a href="lua_api.html#hud-element-types" target="content">HUD element types</a><ul>
+<li><a href="lua_api.html#image" target="content">image</a></li>
+<li><a href="lua_api.html#text" target="content">text</a></li>
+<li><a href="lua_api.html#statbar" target="content">statbar</a></li>
+<li><a href="lua_api.html#inventory" target="content">inventory</a></li>
+<li><a href="lua_api.html#waypoint" target="content">waypoint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#representations-of-simple-things" target="content">Representations of simple things</a><ul>
+<li><a href="lua_api.html#positionvector" target="content">Position/vector</a></li>
+<li><a href="lua_api.html#pointed_thing" target="content">pointed_thing</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#flag-specifier-format" target="content">Flag Specifier Format</a></li>
+<li><a href="lua_api.html#items" target="content">Items</a><ul>
+<li><a href="lua_api.html#item-types" target="content">Item types</a></li>
+<li><a href="lua_api.html#amount-and-wear" target="content">Amount and wear</a></li>
+<li><a href="lua_api.html#item-formats" target="content">Item formats</a><ul>
+<li><a href="lua_api.html#serialized" target="content">Serialized</a></li>
+<li><a href="lua_api.html#table-format" target="content">Table format</a></li>
+<li><a href="lua_api.html#itemstack" target="content">ItemStack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#groups" target="content">Groups</a><ul>
+<li><a href="lua_api.html#usage" target="content">Usage</a></li>
+<li><a href="lua_api.html#groups-of-items" target="content">Groups of items</a></li>
+<li><a href="lua_api.html#groups-of-nodes" target="content">Groups of nodes</a></li>
+<li><a href="lua_api.html#groups-of-entities" target="content">Groups of entities</a></li>
+<li><a href="lua_api.html#groups-of-tools" target="content">Groups of tools</a></li>
+<li><a href="lua_api.html#groups-in-crafting-recipes" target="content">Groups in crafting recipes</a></li>
+<li><a href="lua_api.html#special-groups" target="content">Special groups</a><ul>
+<li><a href="lua_api.html#node-item-and-tool-groups" target="content">Node, item and tool groups</a></li>
+<li><a href="lua_api.html#node-only-groups" target="content">Node-only groups</a></li>
+<li><a href="lua_api.html#tool-only-groups" target="content">Tool-only groups</a></li>
+<li><a href="lua_api.html#objectref-groups" target="content">ObjectRef groups</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#known-damage-and-digging-time-defining-groups" target="content">Known damage and digging time defining groups</a></li>
+<li><a href="lua_api.html#examples-of-custom-groups" target="content">Examples of custom groups</a></li>
+<li><a href="lua_api.html#digging-time-calculation-specifics" target="content">Digging time calculation specifics</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#tools" target="content">Tools</a><ul>
+<li><a href="lua_api.html#tools-definition" target="content">Tools definition</a><ul>
+<li><a href="lua_api.html#full-punch-interval" target="content">Full punch interval</a></li>
+<li><a href="lua_api.html#maximum-drop-level" target="content">Maximum drop level</a></li>
+<li><a href="lua_api.html#uses" target="content">Uses</a></li>
+<li><a href="lua_api.html#maximum-level" target="content">Maximum level</a></li>
+<li><a href="lua_api.html#digging-times" target="content">Digging times</a></li>
+<li><a href="lua_api.html#damage-groups" target="content">Damage groups</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#example-definition-of-the-capabilities-of-a-tool" target="content">Example definition of the capabilities of a tool</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#entity-damage-mechanism" target="content">Entity damage mechanism</a></li>
+<li><a href="lua_api.html#metadata" target="content">Metadata</a><ul>
+<li><a href="lua_api.html#node-metadata" target="content">Node Metadata</a></li>
+<li><a href="lua_api.html#item-metadata" target="content">Item Metadata</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#formspec" target="content">Formspec</a><ul>
+<li><a href="lua_api.html#examples" target="content">Examples</a><ul>
+<li><a href="lua_api.html#chest" target="content">Chest</a></li>
+<li><a href="lua_api.html#furnace" target="content">Furnace</a></li>
+<li><a href="lua_api.html#minecraft-like-player-inventory" target="content">Minecraft-like player inventory</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#elements" target="content">Elements</a><ul>
+<li><a href="lua_api.html#formspec_versionltversiongt" target="content">formspec_version[&lt;version&gt;]</a></li>
+<li><a href="lua_api.html#sizeltwgtlthgtltfixed_sizegt" target="content">size[&lt;W&gt;,&lt;H&gt;,&lt;fixed_size&gt;]</a></li>
+<li><a href="lua_api.html#positionltxgtltygt" target="content">position[&lt;X&gt;,&lt;Y&gt;]</a></li>
+<li><a href="lua_api.html#anchorltxgtltygt" target="content">anchor[&lt;X&gt;,&lt;Y&gt;]</a></li>
+<li><a href="lua_api.html#no_prepend" target="content">no_prepend[]</a></li>
+<li><a href="lua_api.html#real_coordinatesltboolgt" target="content">real_coordinates[&lt;bool&gt;]</a></li>
+<li><a href="lua_api.html#containerltxgtltygt" target="content">container[&lt;X&gt;,&lt;Y&gt;]</a></li>
+<li><a href="lua_api.html#container_end" target="content">container_end[]</a></li>
+<li><a href="lua_api.html#listltinventory-locationgtltlist-namegtltxgtltygtltwgtlthgt" target="content">list[&lt;inventory location&gt;;&lt;list name&gt;;&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;]</a></li>
+<li><a href="lua_api.html#listltinventory-locationgtltlist-namegtltxgtltygtltwgtlthgtltstarting-item-indexgt" target="content">list[&lt;inventory location&gt;;&lt;list name&gt;;&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;starting item index&gt;]</a></li>
+<li><a href="lua_api.html#listringltinventory-locationgtltlist-namegt" target="content">listring[&lt;inventory location&gt;;&lt;list name&gt;]</a></li>
+<li><a href="lua_api.html#listring" target="content">listring[]</a></li>
+<li><a href="lua_api.html#listcolorsltslot_bg_normalgtltslot_bg_hovergt" target="content">listcolors[&lt;slot_bg_normal&gt;;&lt;slot_bg_hover&gt;]</a></li>
+<li><a href="lua_api.html#listcolorsltslot_bg_normalgtltslot_bg_hovergtltslot_bordergt" target="content">listcolors[&lt;slot_bg_normal&gt;;&lt;slot_bg_hover&gt;;&lt;slot_border&gt;]</a></li>
+<li><a href="lua_api.html#listcolorsltslot_bg_normalgtltslot_bg_hovergtltslot_bordergtlttooltip_bgcolorgtlttooltip_fontcolorgt" target="content">listcolors[&lt;slot_bg_normal&gt;;&lt;slot_bg_hover&gt;;&lt;slot_border&gt;;&lt;tooltip_bgcolor&gt;;&lt;tooltip_fontcolor&gt;]</a></li>
+<li><a href="lua_api.html#tooltipltgui_element_namegtlttooltip_textgtltbgcolorgtltfontcolorgt" target="content">tooltip[&lt;gui_element_name&gt;;&lt;tooltip_text&gt;;&lt;bgcolor&gt;;&lt;fontcolor&gt;]</a></li>
+<li><a href="lua_api.html#tooltipltxgtltygtltwgtlthgtlttooltip_textgtltbgcolorgtltfontcolorgt" target="content">tooltip[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;tooltip_text&gt;;&lt;bgcolor&gt;;&lt;fontcolor&gt;]</a></li>
+<li><a href="lua_api.html#imageltxgtltygtltwgtlthgtlttexture-namegt" target="content">image[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;texture name&gt;]</a></li>
+<li><a href="lua_api.html#animated_imageltxgtltygtltwgtlthgtlttexture-namegtltframe-countgtltframe-durationgt" target="content">animated_image[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;texture name&gt;:&lt;frame count&gt;,&lt;frame duration&gt;]</a></li>
+<li><a href="lua_api.html#item_imageltxgtltygtltwgtlthgtltitem-namegt" target="content">item_image[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;item name&gt;]</a></li>
+<li><a href="lua_api.html#bgcolorltbgcolorgtltfullscreengtltfbgcolorgt" target="content">bgcolor[&lt;bgcolor&gt;;&lt;fullscreen&gt;;&lt;fbgcolor&gt;]</a></li>
+<li><a href="lua_api.html#backgroundltxgtltygtltwgtlthgtlttexture-namegt" target="content">background[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;texture name&gt;]</a></li>
+<li><a href="lua_api.html#backgroundltxgtltygtltwgtlthgtlttexture-namegtltauto_clipgt" target="content">background[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;texture name&gt;;&lt;auto_clip&gt;]</a></li>
+<li><a href="lua_api.html#background9ltxgtltygtltwgtlthgtlttexture-namegtltauto_clipgtltmiddlegt" target="content">background9[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;texture name&gt;;&lt;auto_clip&gt;;&lt;middle&gt;]</a></li>
+<li><a href="lua_api.html#pwdfieldltxgtltygtltwgtlthgtltnamegtltlabelgt" target="content">pwdfield[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;label&gt;]</a></li>
+<li><a href="lua_api.html#fieldltxgtltygtltwgtlthgtltnamegtltlabelgtltdefaultgt" target="content">field[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;label&gt;;&lt;default&gt;]</a></li>
+<li><a href="lua_api.html#fieldltnamegtltlabelgtltdefaultgt" target="content">field[&lt;name&gt;;&lt;label&gt;;&lt;default&gt;]</a></li>
+<li><a href="lua_api.html#field_close_on_enterltnamegtltclose_on_entergt" target="content">field_close_on_enter[&lt;name&gt;;&lt;close_on_enter&gt;]</a></li>
+<li><a href="lua_api.html#textarealtxgtltygtltwgtlthgtltnamegtltlabelgtltdefaultgt" target="content">textarea[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;label&gt;;&lt;default&gt;]</a></li>
+<li><a href="lua_api.html#labelltxgtltygtltlabelgt" target="content">label[&lt;X&gt;,&lt;Y&gt;;&lt;label&gt;]</a></li>
+<li><a href="lua_api.html#hypertextltxgtltygtltwgtlthgtltnamegtlttextgt" target="content">hypertext[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;text&gt;]</a></li>
+<li><a href="lua_api.html#vertlabelltxgtltygtltlabelgt" target="content">vertlabel[&lt;X&gt;,&lt;Y&gt;;&lt;label&gt;]</a></li>
+<li><a href="lua_api.html#buttonltxgtltygtltwgtlthgtltnamegtltlabelgt" target="content">button[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;label&gt;]</a></li>
+<li><a href="lua_api.html#image_buttonltxgtltygtltwgtlthgtlttexture-namegtltnamegtltlabelgt" target="content">image_button[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;texture name&gt;;&lt;name&gt;;&lt;label&gt;]</a></li>
+<li><a href="lua_api.html#image_buttonltxgtltygtltwgtlthgtlttexture-namegtltnamegtltlabelgtltnoclipgtltdrawbordergtltpressed-texture-namegt" target="content">image_button[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;texture name&gt;;&lt;name&gt;;&lt;label&gt;;&lt;noclip&gt;;&lt;drawborder&gt;;&lt;pressed texture name&gt;]</a></li>
+<li><a href="lua_api.html#item_image_buttonltxgtltygtltwgtlthgtltitem-namegtltnamegtltlabelgt" target="content">item_image_button[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;item name&gt;;&lt;name&gt;;&lt;label&gt;]</a></li>
+<li><a href="lua_api.html#button_exitltxgtltygtltwgtlthgtltnamegtltlabelgt" target="content">button_exit[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;label&gt;]</a></li>
+<li><a href="lua_api.html#image_button_exitltxgtltygtltwgtlthgtlttexture-namegtltnamegtltlabelgt" target="content">image_button_exit[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;texture name&gt;;&lt;name&gt;;&lt;label&gt;]</a></li>
+<li><a href="lua_api.html#textlistltxgtltygtltwgtlthgtltnamegtltlistelem-1gtltlistelem-2gtltlistelem-ngt" target="content">textlist[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;listelem 1&gt;,&lt;listelem 2&gt;,...,&lt;listelem n&gt;]</a></li>
+<li><a href="lua_api.html#textlistltxgtltygtltwgtlthgtltnamegtltlistelem-1gtltlistelem-2gtltlistelem-ngtltselected-idxgtlttransparentgt" target="content">textlist[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;listelem 1&gt;,&lt;listelem 2&gt;,...,&lt;listelem n&gt;;&lt;selected idx&gt;;&lt;transparent&gt;]</a></li>
+<li><a href="lua_api.html#tabheaderltxgtltygtltnamegtltcaption-1gtltcaption-2gtltcaption-ngtltcurrent_tabgtlttransparentgtltdraw_bordergt" target="content">tabheader[&lt;X&gt;,&lt;Y&gt;;&lt;name&gt;;&lt;caption 1&gt;,&lt;caption 2&gt;,...,&lt;caption n&gt;;&lt;current_tab&gt;;&lt;transparent&gt;;&lt;draw_border&gt;]</a></li>
+<li><a href="lua_api.html#tabheaderltxgtltygtlthgtltnamegtltcaption-1gtltcaption-2gtltcaption-ngtltcurrent_tabgtlttransparentgtltdraw_bordergt" target="content">tabheader[&lt;X&gt;,&lt;Y&gt;;&lt;H&gt;;&lt;name&gt;;&lt;caption 1&gt;,&lt;caption 2&gt;,...,&lt;caption n&gt;;&lt;current_tab&gt;;&lt;transparent&gt;;&lt;draw_border&gt;]</a></li>
+<li><a href="lua_api.html#tabheaderltxgtltygtltwgtlthgtltnamegtltcaption-1gtltcaption-2gtltcaption-ngtltcurrent_tabgtlttransparentgtltdraw_bordergt" target="content">tabheader[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;caption 1&gt;,&lt;caption 2&gt;,...,&lt;caption n&gt;;&lt;current_tab&gt;;&lt;transparent&gt;;&lt;draw_border&gt;]</a></li>
+<li><a href="lua_api.html#boxltxgtltygtltwgtlthgtltcolorgt" target="content">box[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;color&gt;]</a></li>
+<li><a href="lua_api.html#dropdownltxgtltygtltwgtltnamegtltitem-1gtltitem-2gt-ltitem-ngtltselected-idxgt" target="content">dropdown[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;;&lt;name&gt;;&lt;item 1&gt;,&lt;item 2&gt;, ...,&lt;item n&gt;;&lt;selected idx&gt;]</a></li>
+<li><a href="lua_api.html#dropdownltxgtltygtltwgtlthgtltnamegtltitem-1gtltitem-2gt-ltitem-ngtltselected-idxgt" target="content">dropdown[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;item 1&gt;,&lt;item 2&gt;, ...,&lt;item n&gt;;&lt;selected idx&gt;]</a></li>
+<li><a href="lua_api.html#checkboxltxgtltygtltnamegtltlabelgtltselectedgt" target="content">checkbox[&lt;X&gt;,&lt;Y&gt;;&lt;name&gt;;&lt;label&gt;;&lt;selected&gt;]</a></li>
+<li><a href="lua_api.html#scrollbarltxgtltygtltwgtlthgtltorientationgtltnamegtltvaluegt" target="content">scrollbar[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;orientation&gt;;&lt;name&gt;;&lt;value&gt;]</a></li>
+<li><a href="lua_api.html#scrollbaroptionsopt1opt2" target="content">scrollbaroptions[opt1;opt2;...]</a></li>
+<li><a href="lua_api.html#tableltxgtltygtltwgtlthgtltnamegtltcell-1gtltcell-2gtltcell-ngtltselected-idxgt" target="content">table[&lt;X&gt;,&lt;Y&gt;;&lt;W&gt;,&lt;H&gt;;&lt;name&gt;;&lt;cell 1&gt;,&lt;cell 2&gt;,...,&lt;cell n&gt;;&lt;selected idx&gt;]</a></li>
+<li><a href="lua_api.html#tableoptionsltopt-1gtltopt-2gt" target="content">tableoptions[&lt;opt 1&gt;;&lt;opt 2&gt;;...]</a></li>
+<li><a href="lua_api.html#tablecolumnslttype-1gtltopt-1agtltopt-1bgtlttype-2gtltopt-2agtltopt-2bgt" target="content">tablecolumns[&lt;type 1&gt;,&lt;opt 1a&gt;,&lt;opt 1b&gt;,...;&lt;type 2&gt;,&lt;opt 2a&gt;,&lt;opt 2b&gt;;...]</a></li>
+<li><a href="lua_api.html#styleltnamegtltprop1gtltprop2gt" target="content">style[&lt;name&gt;;&lt;prop1&gt;;&lt;prop2&gt;;...]</a></li>
+<li><a href="lua_api.html#style_typelttypegtltprop1gtltprop2gt" target="content">style_type[&lt;type&gt;;&lt;prop1&gt;;&lt;prop2&gt;;...]</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#migrating-to-real-coordinates" target="content">Migrating to Real Coordinates</a></li>
+<li><a href="lua_api.html#styling-formspecs" target="content">Styling Formspecs</a><ul>
+<li><a href="lua_api.html#supported-element-types" target="content">Supported Element Types</a></li>
+<li><a href="lua_api.html#valid-properties" target="content">Valid Properties</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#markup-language" target="content">Markup language</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#inventory_1" target="content">Inventory</a><ul>
+<li><a href="lua_api.html#inventory-locations" target="content">Inventory locations</a></li>
+<li><a href="lua_api.html#player-inventory-lists" target="content">Player Inventory lists</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#colors" target="content">Colors</a><ul>
+<li><a href="lua_api.html#colorstring" target="content">ColorString</a></li>
+<li><a href="lua_api.html#colorspec" target="content">ColorSpec</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#escape-sequences" target="content">Escape sequences</a></li>
+<li><a href="lua_api.html#spatial-vectors" target="content">Spatial Vectors</a></li>
+<li><a href="lua_api.html#helper-functions" target="content">Helper functions</a></li>
+<li><a href="lua_api.html#translations" target="content">Translations</a><ul>
+<li><a href="lua_api.html#translating-a-string" target="content">Translating a string</a></li>
+<li><a href="lua_api.html#operations-on-translated-strings" target="content">Operations on translated strings</a></li>
+<li><a href="lua_api.html#translation-file-format" target="content">Translation file format</a></li>
+<li><a href="lua_api.html#escapes" target="content">Escapes</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#perlin-noise" target="content">Perlin noise</a><ul>
+<li><a href="lua_api.html#structure-of-perlin-noise" target="content">Structure of perlin noise</a></li>
+<li><a href="lua_api.html#noise-parameters" target="content">Noise Parameters</a><ul>
+<li><a href="lua_api.html#offset" target="content">offset</a></li>
+<li><a href="lua_api.html#scale" target="content">scale</a></li>
+<li><a href="lua_api.html#spread" target="content">spread</a></li>
+<li><a href="lua_api.html#seed" target="content">seed</a></li>
+<li><a href="lua_api.html#octaves" target="content">octaves</a></li>
+<li><a href="lua_api.html#persistence" target="content">persistence</a></li>
+<li><a href="lua_api.html#lacunarity" target="content">lacunarity</a></li>
+<li><a href="lua_api.html#flags" target="content">flags</a><ul>
+<li><a href="lua_api.html#defaults" target="content">defaults</a></li>
+<li><a href="lua_api.html#eased" target="content">eased</a></li>
+<li><a href="lua_api.html#absvalue" target="content">absvalue</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#format-example" target="content">Format example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#ores" target="content">Ores</a><ul>
+<li><a href="lua_api.html#ore-types" target="content">Ore types</a><ul>
+<li><a href="lua_api.html#scatter" target="content">scatter</a></li>
+<li><a href="lua_api.html#sheet" target="content">sheet</a></li>
+<li><a href="lua_api.html#puff" target="content">puff</a></li>
+<li><a href="lua_api.html#blob" target="content">blob</a></li>
+<li><a href="lua_api.html#vein" target="content">vein</a></li>
+<li><a href="lua_api.html#stratum" target="content">stratum</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#ore-attributes" target="content">Ore attributes</a><ul>
+<li><a href="lua_api.html#puff_cliffs" target="content">puff_cliffs</a></li>
+<li><a href="lua_api.html#puff_additive_composition" target="content">puff_additive_composition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#decoration-types" target="content">Decoration types</a><ul>
+<li><a href="lua_api.html#simple" target="content">simple</a></li>
+<li><a href="lua_api.html#schematic" target="content">schematic</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#schematics" target="content">Schematics</a><ul>
+<li><a href="lua_api.html#schematic-specifier" target="content">Schematic specifier</a></li>
+<li><a href="lua_api.html#schematic-attributes" target="content">Schematic attributes</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#lua-voxel-manipulator" target="content">Lua Voxel Manipulator</a><ul>
+<li><a href="lua_api.html#about-voxelmanip" target="content">About VoxelManip</a></li>
+<li><a href="lua_api.html#using-voxelmanip" target="content">Using VoxelManip</a><ul>
+<li><a href="lua_api.html#flat-array-format" target="content">Flat array format</a></li>
+<li><a href="lua_api.html#content-ids" target="content">Content IDs</a></li>
+<li><a href="lua_api.html#mapgen-voxelmanip-objects" target="content">Mapgen VoxelManip objects</a></li>
+<li><a href="lua_api.html#other-api-functions-operating-on-a-voxelmanip" target="content">Other API functions operating on a VoxelManip</a></li>
+<li><a href="lua_api.html#notes" target="content">Notes</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#methods" target="content">Methods</a></li>
+<li><a href="lua_api.html#voxelarea" target="content">VoxelArea</a><ul>
+<li><a href="lua_api.html#methods_1" target="content">Methods</a></li>
+<li><a href="lua_api.html#y-stride-and-z-stride-of-a-flat-array" target="content">Y stride and z stride of a flat array</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#mapgen-objects" target="content">Mapgen objects</a><ul>
+<li><a href="lua_api.html#voxelmanip" target="content">voxelmanip</a></li>
+<li><a href="lua_api.html#heightmap" target="content">heightmap</a></li>
+<li><a href="lua_api.html#biomemap" target="content">biomemap</a></li>
+<li><a href="lua_api.html#heatmap" target="content">heatmap</a></li>
+<li><a href="lua_api.html#humiditymap" target="content">humiditymap</a></li>
+<li><a href="lua_api.html#gennotify" target="content">gennotify</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#registered-entities" target="content">Registered entities</a></li>
+<li><a href="lua_api.html#l-system-trees" target="content">L-system trees</a><ul>
+<li><a href="lua_api.html#tree-definition" target="content">Tree definition</a></li>
+<li><a href="lua_api.html#key-for-special-l-system-symbols-used-in-axioms" target="content">Key for special L-System symbols used in axioms</a></li>
+<li><a href="lua_api.html#example_1" target="content">Example</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#minetest-namespace-reference" target="content">'minetest' namespace reference</a><ul>
+<li><a href="lua_api.html#utilities" target="content">Utilities</a></li>
+<li><a href="lua_api.html#logging" target="content">Logging</a></li>
+<li><a href="lua_api.html#registration-functions" target="content">Registration functions</a><ul>
+<li><a href="lua_api.html#environment" target="content">Environment</a></li>
+<li><a href="lua_api.html#gameplay" target="content">Gameplay</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#global-callback-registration-functions" target="content">Global callback registration functions</a></li>
+<li><a href="lua_api.html#setting-related" target="content">Setting-related</a></li>
+<li><a href="lua_api.html#authentication" target="content">Authentication</a></li>
+<li><a href="lua_api.html#chat" target="content">Chat</a></li>
+<li><a href="lua_api.html#environment-access" target="content">Environment access</a></li>
+<li><a href="lua_api.html#mod-channels" target="content">Mod channels</a></li>
+<li><a href="lua_api.html#inventory_2" target="content">Inventory</a></li>
+<li><a href="lua_api.html#formspec_1" target="content">Formspec</a></li>
+<li><a href="lua_api.html#item-handling" target="content">Item handling</a></li>
+<li><a href="lua_api.html#rollback" target="content">Rollback</a></li>
+<li><a href="lua_api.html#defaults-for-the-on_place-and-on_drop-item-definition-functions" target="content">Defaults for the on_place and on_drop item definition functions</a></li>
+<li><a href="lua_api.html#defaults-for-the-on_punch-and-on_dig-node-definition-callbacks" target="content">Defaults for the on_punch and on_dig node definition callbacks</a></li>
+<li><a href="lua_api.html#sounds_1" target="content">Sounds</a></li>
+<li><a href="lua_api.html#timing" target="content">Timing</a></li>
+<li><a href="lua_api.html#server" target="content">Server</a></li>
+<li><a href="lua_api.html#bans" target="content">Bans</a></li>
+<li><a href="lua_api.html#particles" target="content">Particles</a></li>
+<li><a href="lua_api.html#schematics_1" target="content">Schematics</a></li>
+<li><a href="lua_api.html#http-requests" target="content">HTTP Requests</a></li>
+<li><a href="lua_api.html#storage-api" target="content">Storage API</a></li>
+<li><a href="lua_api.html#misc" target="content">Misc.</a></li>
+<li><a href="lua_api.html#global-objects" target="content">Global objects</a></li>
+<li><a href="lua_api.html#global-tables" target="content">Global tables</a><ul>
+<li><a href="lua_api.html#registered-definition-tables" target="content">Registered definition tables</a></li>
+<li><a href="lua_api.html#registered-callback-tables" target="content">Registered callback tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#class-reference" target="content">Class reference</a><ul>
+<li><a href="lua_api.html#areastore" target="content">AreaStore</a><ul>
+<li><a href="lua_api.html#methods_2" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#invref" target="content">InvRef</a><ul>
+<li><a href="lua_api.html#methods_3" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#itemstack_1" target="content">ItemStack</a><ul>
+<li><a href="lua_api.html#methods_4" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#itemstackmetaref" target="content">ItemStackMetaRef</a><ul>
+<li><a href="lua_api.html#methods_5" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#metadataref" target="content">MetaDataRef</a><ul>
+<li><a href="lua_api.html#methods_6" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#modchannel" target="content">ModChannel</a><ul>
+<li><a href="lua_api.html#methods_7" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#nodemetaref" target="content">NodeMetaRef</a><ul>
+<li><a href="lua_api.html#methods_8" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#nodetimerref" target="content">NodeTimerRef</a><ul>
+<li><a href="lua_api.html#methods_9" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#objectref" target="content">ObjectRef</a><ul>
+<li><a href="lua_api.html#methods_10" target="content">Methods</a><ul>
+<li><a href="lua_api.html#lua-entity-only-no-op-for-other-objects" target="content">Lua entity only (no-op for other objects)</a></li>
+<li><a href="lua_api.html#player-only-no-op-for-other-objects" target="content">Player only (no-op for other objects)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#pcgrandom" target="content">PcgRandom</a><ul>
+<li><a href="lua_api.html#methods_11" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#perlinnoise" target="content">PerlinNoise</a><ul>
+<li><a href="lua_api.html#methods_12" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#perlinnoisemap" target="content">PerlinNoiseMap</a><ul>
+<li><a href="lua_api.html#methods_13" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#playermetaref" target="content">PlayerMetaRef</a><ul>
+<li><a href="lua_api.html#methods_14" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#pseudorandom" target="content">PseudoRandom</a><ul>
+<li><a href="lua_api.html#methods_15" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#raycast" target="content">Raycast</a><ul>
+<li><a href="lua_api.html#methods_16" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#securerandom" target="content">SecureRandom</a><ul>
+<li><a href="lua_api.html#methods_17" target="content">Methods</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#settings" target="content">Settings</a><ul>
+<li><a href="lua_api.html#methods_18" target="content">Methods</a></li>
+<li><a href="lua_api.html#format" target="content">Format</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#storageref" target="content">StorageRef</a><ul>
+<li><a href="lua_api.html#methods_19" target="content">Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="lua_api.html#definition-tables" target="content">Definition tables</a><ul>
+<li><a href="lua_api.html#object-properties" target="content">Object properties</a></li>
+<li><a href="lua_api.html#entity-definition" target="content">Entity definition</a></li>
+<li><a href="lua_api.html#abm-activeblockmodifier-definition" target="content">ABM (ActiveBlockModifier) definition</a></li>
+<li><a href="lua_api.html#lbm-loadingblockmodifier-definition" target="content">LBM (LoadingBlockModifier) definition</a></li>
+<li><a href="lua_api.html#tile-definition" target="content">Tile definition</a></li>
+<li><a href="lua_api.html#tile-animation-definition" target="content">Tile animation definition</a></li>
+<li><a href="lua_api.html#item-definition" target="content">Item definition</a></li>
+<li><a href="lua_api.html#node-definition" target="content">Node definition</a></li>
+<li><a href="lua_api.html#crafting-recipes" target="content">Crafting recipes</a><ul>
+<li><a href="lua_api.html#shaped" target="content">Shaped</a></li>
+<li><a href="lua_api.html#shapeless" target="content">Shapeless</a></li>
+<li><a href="lua_api.html#tool-repair" target="content">Tool repair</a></li>
+<li><a href="lua_api.html#cooking" target="content">Cooking</a></li>
+<li><a href="lua_api.html#furnace-fuel" target="content">Furnace fuel</a></li>
+</ul>
+</li>
+<li><a href="lua_api.html#ore-definition" target="content">Ore definition</a></li>
+<li><a href="lua_api.html#biome-definition" target="content">Biome definition</a></li>
+<li><a href="lua_api.html#decoration-definition" target="content">Decoration definition</a></li>
+<li><a href="lua_api.html#chat-command-definition" target="content">Chat command definition</a></li>
+<li><a href="lua_api.html#privilege-definition" target="content">Privilege definition</a></li>
+<li><a href="lua_api.html#detached-inventory-callbacks" target="content">Detached inventory callbacks</a></li>
+<li><a href="lua_api.html#hud-definition" target="content">HUD Definition</a></li>
+<li><a href="lua_api.html#particle-definition" target="content">Particle definition</a></li>
+<li><a href="lua_api.html#particlespawner-definition" target="content">ParticleSpawner definition</a></li>
+<li><a href="lua_api.html#httprequest-definition" target="content">HTTPRequest definition</a></li>
+<li><a href="lua_api.html#httprequestresult-definition" target="content">HTTPRequestResult definition</a></li>
+<li><a href="lua_api.html#authentication-handler-definition" target="content">Authentication handler definition</a></li>
+</ul>
+</li>
+</ul>
+</div>
