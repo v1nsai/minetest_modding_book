@@ -99,6 +99,9 @@ args = parser.parse_args()
 html = str(soup)
 
 frames = """
+<head>
+  <title>Lua Modding API Reference</title>
+</head>
 <frameset cols="25%,*">
     <frame src="toc.html" name="toc">
     <frame src="lua_api.html" name="content">
