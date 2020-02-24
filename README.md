@@ -12,6 +12,14 @@ License: CC-BY-SA 3.0
 * `static/` - CSS, images, scripts.
 * `_<lang>/`
     * `<section>/` - Markdown files for each chapter.
+* `utils/` - Miscellaneous tools
+
+## Building the lua_api.txt browser
+lua_api.txt is the best source for the latest lua API definitions, but it can be unwieldy to navigate.  Using `utils/update_lua_api.py`, one can generate a simple HTML web page with a navigation frame to make it more manageable.
+
+To build it, simply run `python -m pip install -r utils/requirement.txt --user` to install required packages, then run `python utils/update_lua_api.py`.  This will generate (or update) the `out/` folder which contains 3 HTML files.  Open `index.html` in your browser.
+
+If you're like me and have everything in dark mode, you may be unpleasantly blinded when you open the `index.html` file.  Simply run the `update_lua_api.py` script with the `-d` or `--darkmode` flag to add the CSS to add a simple dark theme that is easy on the eyes.
 
 ## Contributing chapters
 
